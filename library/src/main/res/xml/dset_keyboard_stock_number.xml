@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-          android:horizontalGap="2%p"
+          android:horizontalGap="1%p"
           android:keyHeight="7.7%p"
           android:keyWidth="22.5%p"
           android:verticalGap="1.3%p">
@@ -59,18 +59,22 @@
         <Key
             android:codes="-13"
             android:keyLabel="300"/>
+
         <Key
-            android:codes="-2"
-            android:keyLabel="ABC" />
+            android:codes="46"
+            android:keyLabel="000"/>
+
         <Key
             android:codes="48"
             android:keyLabel="0"/>
+
+        <Key
+            android:codes="-2"
+            android:keyLabel="ABC" />
+
         <Key
             android:codes="-16"
             android:keyLabel="@string/chinese" />
-        <Key
-            android:codes="46"
-            android:keyLabel="."/>
     </Row>
 
 </Keyboard>

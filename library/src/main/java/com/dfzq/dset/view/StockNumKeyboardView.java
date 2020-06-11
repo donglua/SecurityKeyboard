@@ -24,9 +24,10 @@ public class StockNumKeyboardView extends SecretKeyboardView {
     private static final String KEY_LABEL_601 = "601";
     private static final String KEY_LABEL_002 = "002";
     private static final String KEY_LABEL_300 = "300";
-    private static final String KEY_LABEL_00 = "00";
+    private static final String KEY_LABEL_000 = "000";
     private static final String KEY_LABEL_IF = "IF";
     public static final String KEY_LABEL_DOTE = ".";
+    private Paint paint = null;
 
     public StockNumKeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -59,7 +60,7 @@ public class StockNumKeyboardView extends SecretKeyboardView {
                 || KEY_LABEL_601.equals(label)
                 || KEY_LABEL_002.equals(label)
                 || KEY_LABEL_300.equals(label)
-                || KEY_LABEL_00.equals(label)
+                || KEY_LABEL_000.equals(label)
                 || KEY_LABEL_IF.equals(label)
                 || key.codes[0] == -16
                 || KEY_LABEL_DOTE.equals(label)) {
@@ -74,17 +75,13 @@ public class StockNumKeyboardView extends SecretKeyboardView {
     @Override
     protected void drawText(Canvas canvas, Keyboard.Key key) {
         Rect bounds = new Rect();
-        Paint paint = new Paint();
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setColor(Color.parseColor("#333333"));
-        if (key.codes[0] == KEYCODE_MODE_CHANGE) {
+        if (paint == null) {
+            paint = new Paint();
+            paint.setAntiAlias(true);
             paint.setTextSize(dip2px(20));
-        } else if (key.codes[0] == 46) {
-            paint.setTextSize(dip2px(21));
-        } else {
-            paint.setTextSize(dip2px(20));
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setColor(Color.parseColor("#333333"));
         }
-        paint.setAntiAlias(true);
 
         if (key.label != null) {
             paint.getTextBounds(key.label.toString(), 0, key.label.toString()
