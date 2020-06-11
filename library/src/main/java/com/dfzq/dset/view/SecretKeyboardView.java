@@ -28,6 +28,7 @@ public abstract class SecretKeyboardView extends KeyboardView {
     public static final int KEYBOARD_STOCK_LETTER = 0x06;
 
     protected boolean isHideEnable = true;
+    private Paint paint;
 
     public SecretKeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,9 +70,12 @@ public abstract class SecretKeyboardView extends KeyboardView {
 
     protected void drawText(Canvas canvas, Keyboard.Key key) {
         Rect bounds = new Rect();
-        Paint paint = new Paint();
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setColor(Color.parseColor("#333333"));
+        if (paint == null) {
+            paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setColor(Color.parseColor("#333333"));
+        }
         if (key.codes[0] == KEYCODE_MODE_CHANGE) {
             paint.setTextSize(dip2px(20));
         } else if (key.codes[0] == 46) {
@@ -79,7 +83,6 @@ public abstract class SecretKeyboardView extends KeyboardView {
         } else {
             paint.setTextSize(dip2px(22));
         }
-        paint.setAntiAlias(true);
 
         if (key.label != null) {
             paint.getTextBounds(key.label.toString(), 0, key.label.toString()
